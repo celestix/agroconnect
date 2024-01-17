@@ -79,9 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
           }
           Navigator.pop(config.navigatorKey.currentContext!);
         },
-        codeAutoRetrievalTimeout: (_) {
-          Navigator.pop(config.navigatorKey.currentContext!);
-        });
+        codeAutoRetrievalTimeout: (_) {});
   }
 
   List<Widget> getBottomWidgets(BuildContext context, Size size) {
@@ -289,7 +287,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     SizedBox(
-                      height: size.height / 15,
+                      height: size.height / 17,
                     )
                   ] +
                   getBottomWidgets(context, size)),

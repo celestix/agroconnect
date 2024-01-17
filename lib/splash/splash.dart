@@ -65,7 +65,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       color: config.chosenTheme.primaryColorLight,
                     ),
                   ),
-                  onPressed: () => Navigator.pushNamed(context, "/home"),
+                  onPressed: () => Navigator.pushNamed(context, "/login"),
                 ),
               ],
             ),
