@@ -1,3 +1,4 @@
+import 'package:FarmXpert/home/notf.dart';
 import 'package:FarmXpert/misc/config.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -215,13 +216,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             child: InkWell(
               onTap: () {
-                // // Navigate to the corresponding page when an image is tapped
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => pages[index],
-                //   ),
-                // );
+                // Navigate to the corresponding page when an image is tapped
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const PageNotFound(),
+                  ),
+                );
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
