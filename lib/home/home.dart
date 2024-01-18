@@ -51,10 +51,6 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Center(
             child: Column(
               children: [
-                Divider(
-                  height: MediaQuery.of(context).size.height * 0.01,
-                  color: Colors.transparent,
-                ),
                 Container(
                   margin: const EdgeInsets.only(top: 20, bottom: 20),
                   width: MediaQuery.of(context).size.width * 0.4,
@@ -84,8 +80,29 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontWeight: FontWeight.w100,
                   ),
                 ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 2.2,
+                Padding(
+                  padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height / 100,
+                  ),
+                  child: Divider(
+                    height: MediaQuery.of(context).size.height / 100,
+                    color: Colors.transparent,
+                  ),
+                ),
+                Expanded(
+                  flex: 20,
+                  child: ListView(
+                    children: [
+                      ListTile(
+                        title: const Text("Home"),
+                        onTap: () => {},
+                      ),
+                      ListTile(
+                        title: const Text("Settings"),
+                        onTap: () => {},
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width / 1.5,
