@@ -22,7 +22,6 @@ void main() async {
     navigatorKey: navigatorKey,
     scaffoldKey: scaffoldKey,
   );
-
   runApp(MaterialApp(
     navigatorKey: navigatorKey,
     scaffoldMessengerKey: scaffoldKey,
