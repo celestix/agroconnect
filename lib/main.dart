@@ -26,7 +26,6 @@ void main() async {
   runApp(MaterialApp(
     navigatorKey: navigatorKey,
     scaffoldMessengerKey: scaffoldKey,
-    // showPerformanceOverlay: true,
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
       colorScheme: ColorScheme.fromSeed(
