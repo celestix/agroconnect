@@ -121,12 +121,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 30,
+                const Expanded(
+                  child: SizedBox(
+                      // height: MediaQuery.of(context).size.height / 30,
+                      ),
                 ),
                 Divider(
                   height: MediaQuery.of(context).size.height / 100,
-                  thickness: 0.25,
+                  thickness: 0.15,
                   color: Colors.black,
                 ),
                 TextButton(
@@ -150,11 +152,16 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     );
                   },
-                  child: const Text(
-                    "About",
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w300,
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      bottom: MediaQuery.of(context).size.height / 100,
+                    ),
+                    child: const Text(
+                      "About",
+                      style: TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w300,
+                      ),
                     ),
                   ),
                 ),
