@@ -1,4 +1,4 @@
-import 'package:FarmXpert/home/notf.dart';
+import 'package:FarmXpert/home/coming_soon.dart';
 import 'package:FarmXpert/misc/config.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -19,16 +19,6 @@ class _HomeScreenState extends State<HomeScreen> {
     'Weather',
     'Govt. Policies',
   ];
-
-  // List<Widget> pages = [
-  // const ChatbotPage(),
-  // const FarmBookPage(),
-  // const CommunityPage(),
-  // const MarketplacePage(),
-  // const WeatherPage(),
-  // const DocumentsPage(),
-  // Add other page instances for each image
-  // ];
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       )),
                 ),
                 Text(
-                  FirebaseAuth.instance.currentUser!.displayName!,
+                  FirebaseAuth.instance.currentUser!.displayName ?? "User",
                   style: const TextStyle(
                     fontFamily: "SF Pro Display",
                     fontSize: 25,

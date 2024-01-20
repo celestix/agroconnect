@@ -135,8 +135,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   if (authorizer.currentUser!.displayName == null) {
                     await config.navigatorKey.currentState!
                         .pushNamed("/signup");
-                    // await authorizer.currentUser!
-                    // .updateDisplayName("Parmeshwar Kumar");
                   } else {
                     await config.navigatorKey.currentState!
                         .pushNamedAndRemoveUntil("/home", (route) => false);
