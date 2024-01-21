@@ -23,6 +23,14 @@ FarmXpert is a one-place app that provides direct-to-consumer services such as b
 3. Install the required packages using the `flutter pub get`.
 4. Run the app using `flutter run` or using your IDE's tools.
 
+## Todo
+- [x] Create a backend API for FarmBook
+- [x] Add Phone OTP based authentification
+- [x] Integrate Firestore for storage
+- [ ] Integrate Google Analytics
+- [ ] Integrate Gemini AI  
+- [ ] Add Dark Theme
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
