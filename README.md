@@ -28,6 +28,8 @@ FarmXpert is a one-place app that provides direct-to-consumer services such as b
 - [x] Add Phone OTP based authentification
 - [x] Integrate Firestore for storage
 - [ ] Integrate Google Analytics
+- [ ] Implement Firebase Push Messages Mechanism
+- [ ] Implement Firebase Crashlytics
 - [ ] Integrate Gemini AI  
 - [ ] Add Dark Theme
 
