@@ -86,11 +86,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       ListTile(
                         title: const Text("Home"),
-                        onTap: () => {},
+                        onTap: () => throw Exception("Home Not Implemented"),
                       ),
                       ListTile(
                         title: const Text("Settings"),
-                        onTap: () => {},
+                        onTap: () =>
+                            throw Exception("Settings Not Implemented"),
                       ),
                     ],
                   ),
