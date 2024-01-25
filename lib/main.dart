@@ -4,6 +4,7 @@ import 'package:FarmXpert/misc/config.dart' as misc;
 import 'package:FarmXpert/splash/splash.dart';
 import 'package:FarmXpert/auth/login.dart';
 import 'package:FarmXpert/firebase_options.dart';
+import 'package:FarmXpert/store/main_store.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
@@ -82,6 +83,7 @@ void main() async {
       '/login': (context) => const LoginScreen(),
       '/signup': (context) => const SignupScreen(),
       '/home': (context) => const HomeScreen(),
+      '/store': (context) => const StoreScreen(),
     },
   ));
 }

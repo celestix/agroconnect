@@ -1,5 +1,6 @@
 import 'package:FarmXpert/home/coming_soon.dart';
 import 'package:FarmXpert/misc/config.dart';
+import 'package:FarmXpert/store/main_store.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +20,10 @@ class _HomeScreenState extends State<HomeScreen> {
     'Weather',
     'Govt. Policies',
   ];
+
+  Map<String, Widget?> homeRoutes = {
+    "Marketplace": const StoreScreen(),
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -211,7 +216,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const PageNotFound(),
+                    builder: (context) =>
+                        homeRoutes[imageTexts[index]] ?? const PageNotFound(),
                   ),
                 );
               },

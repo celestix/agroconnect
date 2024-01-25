@@ -68,18 +68,10 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-      - assets/images/splash/1.svg
-      - assets/images/splash/2.svg
-      - assets/images/splash/3.svg
-      - assets/images/auth.svg
-      - assets/images/login.png
-      - assets/images/farmer.png
-      - assets/images/home/FarmBook.png
-      - assets/images/home/ChatBot.png
-      - assets/images/home/Community.png
-      - assets/images/home/Weather.png
-      - assets/images/home/Marketplace.png
-      - "assets/images/home/Govt. Policies.png"
+      - assets/images/
+      - assets/images/splash/
+      - assets/images/home/
+      - assets/images/store/
       # - assets/images/login.svg
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
@@ -99,7 +91,11 @@ flutter:
       - family: SF Pro Display
         fonts:
           - asset: assets/fonts/SF-Pro-Display-Bold.OTF
+            weight: 700
           - asset: assets/fonts/SF-Pro-Display-Regular.OTF
+            weight: 400
+          - asset: assets/fonts/SF-Pro-Display-Medium.OTF
+            weight: 500
       - family: Inter
         fonts:
           - asset: assets/fonts/Inter.ttf
