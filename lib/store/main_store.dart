@@ -1,5 +1,6 @@
 import 'package:FarmXpert/store/helpers.dart';
 import 'package:FarmXpert/store/sub_store.dart';
+import 'package:FarmXpert/store/seller_signup.dart';
 import 'package:flutter/material.dart';
 
 class StoreScreen extends StatefulWidget {
@@ -114,9 +115,16 @@ class _StoreScreenState extends State<StoreScreen> {
           ),
           actions: [
             IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.shopping_cart),
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const SellerSignupScreen(),
+                ));
+              },
+              icon: const Icon(Icons.account_box),
             ),
+            const SizedBox(
+              width: 5,
+            )
           ],
           elevation: 1,
           surfaceTintColor: Colors.white,
@@ -228,7 +236,7 @@ class _StoreScreenState extends State<StoreScreen> {
                 color: Colors.grey[300],
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height - 150,
+                height: MediaQuery.of(context).size.height - 155,
                 child: ListView(
                   children: [
                     getSection("Fertilizers"),
