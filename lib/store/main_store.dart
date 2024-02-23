@@ -235,8 +235,7 @@ class _StoreScreenState extends State<StoreScreen> {
               Divider(
                 color: Colors.grey[300],
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height - 155,
+              Expanded(
                 child: ListView(
                   children: [
                     getSection("Fertilizers"),

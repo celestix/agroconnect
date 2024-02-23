@@ -1,12 +1,12 @@
 import 'package:FarmXpert/models/product_model.dart';
 import 'package:flutter/material.dart';
 
-List<Row> getProductGrid(List<Product> products) {
+List<Row> getProductGrid(List<ProductModel> products) {
   List<Row> productGrid = [];
   int elemsCount = 0;
   List<Card> elems = [];
   for (int i = 0; i < products.length; i++) {
-    final Product product = products[i];
+    final ProductModel product = products[i];
     elemsCount++;
     elems.add(getProductCard(product.id, product.name, product.price));
     if (elemsCount == 2 || i == products.length - 1) {

@@ -57,15 +57,20 @@ class _SubStoreScreenState extends State<SubStoreScreen> {
             Divider(
               color: Colors.grey[300],
             ),
-            SizedBox(
-              height: MediaQuery.of(context).size.height - 150,
+            Expanded(
+              // height: MediaQuery.of(context).size.height - 150,
               child: ListView(
                 padding: EdgeInsets.symmetric(
-                  horizontal: MediaQuery.of(context).size.width / 19,
+                  horizontal: MediaQuery.of(context).size.width / 30,
                 ),
-                children: getProductGrid(getProducts(sectionName)),
+                children: getProductGrid(
+                  getProducts(sectionName),
+                ),
               ),
             ),
+            const SizedBox(
+              height: 10,
+            )
           ],
         ),
       ),

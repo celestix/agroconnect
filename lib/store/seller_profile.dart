@@ -1,4 +1,5 @@
 import 'package:FarmXpert/store/_test.dart';
+import 'package:FarmXpert/store/add_product.dart';
 import 'package:FarmXpert/store/helpers.dart';
 import 'package:flutter/material.dart';
 
@@ -39,7 +40,11 @@ class _SellerProfileScreenState extends State<SellerProfileScreen> {
                     ),
                     const Spacer(),
                     IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const ProductUploadScreen(),
+                        ));
+                      },
                       icon: const Icon(Icons.add_box),
                     ),
                   ],
@@ -48,15 +53,18 @@ class _SellerProfileScreenState extends State<SellerProfileScreen> {
               Divider(
                 color: Colors.grey[300],
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height - 155,
+              Expanded(
+                // height: MediaQuery.of(context).size.height - 155,
                 child: ListView(
                   padding: EdgeInsets.symmetric(
-                    horizontal: MediaQuery.of(context).size.width / 19,
+                    horizontal: MediaQuery.of(context).size.width / 30,
                   ),
                   children: getProductGrid(getProducts("Fertilizers")),
                 ),
               ),
+              const SizedBox(
+                height: 10,
+              )
             ],
           ),
         ));
