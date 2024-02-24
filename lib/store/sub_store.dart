@@ -1,6 +1,6 @@
 // ignore_for_file: no_logic_in_create_state
-
-import 'package:FarmXpert/store/_test.dart';
+import 'package:FarmXpert/models/product_model.dart';
+import 'package:FarmXpert/store/category.dart';
 import 'package:FarmXpert/store/helpers.dart';
 import 'package:flutter/material.dart';
 
@@ -57,17 +57,49 @@ class _SubStoreScreenState extends State<SubStoreScreen> {
             Divider(
               color: Colors.grey[300],
             ),
-            Expanded(
-              // height: MediaQuery.of(context).size.height - 150,
-              child: ListView(
-                padding: EdgeInsets.symmetric(
-                  horizontal: MediaQuery.of(context).size.width / 30,
-                ),
-                children: getProductGrid(
-                  getProducts(sectionName),
-                ),
-              ),
-            ),
+            FutureBuilder<List<ProductModel>>(
+                future: getProducts(productCategoryStringToInt(sectionName)),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    if (snapshot.hasError) {
+                      return Center(
+                        child: Text("Error: ${snapshot.error!}"),
+                      );
+                    }
+                    return Expanded(
+                      child: (snapshot.data != null &&
+                              snapshot.data!.isNotEmpty)
+                          ? ListView(
+                              padding: EdgeInsets.symmetric(
+                                horizontal:
+                                    MediaQuery.of(context).size.width * 0.05,
+                              ),
+                              children: getProductGrid(snapshot.data!),
+                            )
+                          : const Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Center(
+                                  child: Text("No products found."),
+                                ),
+                              ],
+                            ),
+                    );
+                  } else {
+                    return const Expanded(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.black,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
+                }),
             const SizedBox(
               height: 10,
             )

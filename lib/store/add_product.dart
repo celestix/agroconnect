@@ -1,4 +1,6 @@
 import 'package:FarmXpert/misc/config.dart';
+import 'package:FarmXpert/models/product_model.dart';
+import 'package:FarmXpert/store/category.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +19,9 @@ class _ProductUploadScreenState extends State<ProductUploadScreen> {
   final TextEditingController _productDescriptionController =
       TextEditingController();
   final TextEditingController _productPriceController = TextEditingController();
-  late XFile? _productImage;
+  final TextEditingController _productCategoryController =
+      TextEditingController();
+  XFile? _productImage;
 
   final ImagePicker picker = ImagePicker();
 
@@ -51,12 +55,35 @@ class _ProductUploadScreenState extends State<ProductUploadScreen> {
       );
       return;
     }
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (ctx) {
+          return const SimpleDialog(
+            surfaceTintColor: Colors.white,
+            elevation: 10,
+            children: [
+              Center(
+                child: Padding(
+                  padding: EdgeInsets.all(20),
+                  child: SizedBox(
+                    height: 50,
+                    width: 50,
+                    child: CircularProgressIndicator(
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          );
+        });
+    String? imageUrl;
+    final productUuid = (const UuidV4()).generate();
+    final String userId = FirebaseAuth.instance.currentUser!.uid;
     if (_productImage != null) {
-      final productUuid = (const UuidV4()).generate();
-      final productStorageRef = FirebaseStorage.instance
-          .ref()
-          .child("product_storage")
-          .child(FirebaseAuth.instance.currentUser!.uid);
+      final productStorageRef =
+          FirebaseStorage.instance.ref().child("product_storage").child(userId);
       final productImageRef = productStorageRef.child(productUuid);
       final metadata = SettableMetadata(
         contentType: _productImage!.mimeType,
@@ -70,9 +97,47 @@ class _ProductUploadScreenState extends State<ProductUploadScreen> {
         return;
       }
       await productImageRef.putData(
-          await _productImage!.readAsBytes(), metadata);
-      print(await productImageRef.getDownloadURL());
+        await _productImage!.readAsBytes(),
+        metadata,
+      );
+      imageUrl = await productImageRef.getDownloadURL();
     }
+    final productData = ProductModel(
+      id: productUuid,
+      name: _productNameController.text,
+      price: double.parse(_productPriceController.text),
+      category: productCategoryStringToInt(_productCategoryController.text),
+      description: _productDescriptionController.text,
+      seller: userId,
+      image: imageUrl,
+    );
+    await productData.add();
+    Navigator.pop(config.navigatorKey.currentContext!);
+    config.scaffoldKey.currentState!.showMaterialBanner(
+      MaterialBanner(
+        content: const Text(
+          "Product added successfully.",
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: Colors.black,
+        actions: [
+          TextButton(
+            onPressed: () {
+              config.scaffoldKey.currentState!.hideCurrentMaterialBanner();
+            },
+            child: const Text(
+              "OK",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -124,30 +189,53 @@ class _ProductUploadScreenState extends State<ProductUploadScreen> {
               keyboardType: TextInputType.number,
             ),
             const Spacer(),
-            Center(
-              child: SizedBox(
-                height: MediaQuery.of(context).size.height / 20,
-                width: MediaQuery.of(context).size.width / 2,
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.black,
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
+            Row(
+              children: [
+                const Spacer(),
+                DropdownMenu<ProductCategory>(
+                  initialSelection: ProductCategory.fertilizers,
+                  controller: _productCategoryController,
+                  label: const Text('Category'),
+                  menuStyle: const MenuStyle(
+                    backgroundColor: MaterialStatePropertyAll(
+                      Colors.white,
                     ),
                   ),
-                  onPressed: getImage,
-                  child: Text(
-                    "Upload Image",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: MediaQuery.of(context).size.height / 50,
-                      height: -0.2,
+                  dropdownMenuEntries: ProductCategory.values
+                      .map<DropdownMenuEntry<ProductCategory>>(
+                          (ProductCategory category) {
+                    return DropdownMenuEntry<ProductCategory>(
+                      value: category,
+                      label: category.name,
+                    );
+                  }).toList(),
+                ),
+                const Spacer(),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height / 15,
+                  width: MediaQuery.of(context).size.width / 2.5,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                    onPressed: getImage,
+                    child: Text(
+                      "Upload Image",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: MediaQuery.of(context).size.height / 50,
+                        height: -0.2,
+                      ),
                     ),
                   ),
                 ),
-              ),
+                const Spacer(),
+              ],
             ),
             const Spacer(),
             const Spacer(),

@@ -7,12 +7,14 @@ class UserModel {
   late final String firstName;
   late final String? lastName;
   late final String? email;
+  late bool? isSeller;
 
   UserModel({
     required this.uid,
     required this.firstName,
     this.lastName,
     this.email,
+    this.isSeller,
   });
 
   UserModel.fromMap(Map<String, dynamic> map) {
@@ -20,6 +22,7 @@ class UserModel {
     firstName = map['firstName'];
     lastName = map['lastName'];
     email = map['email'];
+    isSeller = map['isSeller'];
   }
 
   Map<String, dynamic> toMap() {
@@ -28,6 +31,7 @@ class UserModel {
       'firstName': firstName,
       'lastName': lastName,
       'email': email,
+      'isSeller': isSeller,
     };
   }
 

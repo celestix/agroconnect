@@ -8,7 +8,9 @@ List<Row> getProductGrid(List<ProductModel> products) {
   for (int i = 0; i < products.length; i++) {
     final ProductModel product = products[i];
     elemsCount++;
-    elems.add(getProductCard(product.id, product.name, product.price));
+    elems.add(getProductCard(product.id, product.name, product.price,
+        productImage:
+            (product.image != null) ? Image.network(product.image!) : null));
     if (elemsCount == 2 || i == products.length - 1) {
       productGrid.add(
         Row(
@@ -21,6 +23,17 @@ List<Row> getProductGrid(List<ProductModel> products) {
     }
   }
   return productGrid;
+}
+
+List<Card> getProductCards(List<ProductModel> products) {
+  List<Card> productCards = [];
+  for (int i = 0; i < products.length; i++) {
+    final ProductModel product = products[i];
+    productCards.add(getProductCard(product.id, product.name, product.price,
+        productImage:
+            (product.image != null) ? Image.network(product.image!) : null));
+  }
+  return productCards;
 }
 
 Card getProductCard(String productId, String productName, double productPrice,
@@ -42,6 +55,7 @@ Card getProductCard(String productId, String productName, double productPrice,
           Container(
             margin: const EdgeInsets.fromLTRB(5, 10, 5, 5),
             width: 150,
+            height: 150,
             child:
                 productImage ?? Image.asset("assets/images/store/img404.jpg"),
           ),

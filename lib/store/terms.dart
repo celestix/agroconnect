@@ -129,8 +129,10 @@ class TermsScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                onPressed: () {
-                  Navigator.of(context)
+                onPressed: () async {
+                  config.user!.isSeller = true;
+                  await config.user!.update();
+                  await config.navigatorKey.currentState!
                       .pushReplacement(MaterialPageRoute(builder: (context) {
                     return const SellerProfileScreen();
                   }));

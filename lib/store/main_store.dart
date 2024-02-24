@@ -1,6 +1,10 @@
+import 'package:FarmXpert/models/product_model.dart';
+import 'package:FarmXpert/store/category.dart';
 import 'package:FarmXpert/store/helpers.dart';
+import 'package:FarmXpert/store/seller_profile.dart';
 import 'package:FarmXpert/store/sub_store.dart';
 import 'package:FarmXpert/store/seller_signup.dart';
+import 'package:FarmXpert/misc/config.dart';
 import 'package:flutter/material.dart';
 
 class StoreScreen extends StatefulWidget {
@@ -11,7 +15,13 @@ class StoreScreen extends StatefulWidget {
 }
 
 class _StoreScreenState extends State<StoreScreen> {
-  final Map<String, bool> _filterChecklist = {};
+  final Map<String, bool> _filterChecklist = {
+    "Fertilizers": true,
+    "Pesticides": true,
+    "Crops": true,
+    "Seeds": true,
+  };
+
   Row getChecklistElement(
       String name, void Function(void Function()) setState) {
     if (_filterChecklist[name] == null) {
@@ -42,13 +52,39 @@ class _StoreScreenState extends State<StoreScreen> {
     );
   }
 
-  Widget getSection(String sectionName) {
+  Future<Widget> getFilteredProducts() async {
+    List<String> sectionNames = [];
+    _filterChecklist.forEach((key, value) {
+      if (value == false) {
+        return;
+      }
+      sectionNames.add(key);
+    });
+    List<Widget> sections = [];
+    for (int i = 0; i < sectionNames.length; i++) {
+      sections.add(await getSection(sectionNames[i]));
+    }
+    return Expanded(
+      child: ListView(
+        children: [
+          ...sections,
+          const SizedBox(
+            height: 10,
+          )
+        ],
+      ),
+    );
+  }
+
+  Future<Widget> getSection(String sectionName) async {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: MediaQuery.of(context).size.width * 0.05,
+            horizontal:
+                MediaQuery.of(config.navigatorKey.currentContext!).size.width *
+                    0.05,
           ),
           child: Row(
             children: [
@@ -85,17 +121,15 @@ class _StoreScreenState extends State<StoreScreen> {
         ),
         Padding(
           padding: EdgeInsets.symmetric(
-            horizontal: MediaQuery.of(context).size.width * 0.05,
+            horizontal:
+                MediaQuery.of(config.navigatorKey.currentContext!).size.width *
+                    0.05,
           ),
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Wrap(
-              children: [
-                getProductCard("1", "Test Product 1", 100),
-                getProductCard("2", "Test Product 2", 100),
-                getProductCard("3", "Test Product 3", 100),
-                getProductCard("4", "Test Product 4", 100),
-              ],
+              children: getProductCards(
+                  await getProducts(productCategoryStringToInt(sectionName))),
             ),
           ),
         ),
@@ -115,9 +149,12 @@ class _StoreScreenState extends State<StoreScreen> {
           ),
           actions: [
             IconButton(
-              onPressed: () {
+              onPressed: () async {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const SellerSignupScreen(),
+                  builder: (context) => (config.user!.isSeller == null ||
+                          config.user!.isSeller == false)
+                      ? const SellerSignupScreen()
+                      : const SellerProfileScreen(),
                 ));
               },
               icon: const Icon(Icons.account_box),
@@ -187,8 +224,10 @@ class _StoreScreenState extends State<StoreScreen> {
                                           padding:
                                               const EdgeInsets.only(right: 20),
                                           child: TextButton(
-                                            onPressed: () =>
-                                                Navigator.pop(context),
+                                            onPressed: () async {
+                                              Navigator.pop(context);
+                                              super.setState(() {});
+                                            },
                                             child: const Text("OK"),
                                           ),
                                         ),
@@ -235,19 +274,29 @@ class _StoreScreenState extends State<StoreScreen> {
               Divider(
                 color: Colors.grey[300],
               ),
-              Expanded(
-                child: ListView(
-                  children: [
-                    getSection("Fertilizers"),
-                    getSection("Pesticides"),
-                    getSection("Seeds"),
-                    getSection("Crops"),
-                    const SizedBox(
-                      height: 10,
-                    )
-                  ],
-                ),
-              )
+              FutureBuilder<Widget>(
+                future: getFilteredProducts(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    if (snapshot.hasError) {
+                      return Center(
+                        child: Text("Error: ${snapshot.error!}"),
+                      );
+                    }
+                    return snapshot.data!;
+                  }
+                  return const Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        CircularProgressIndicator(
+                          color: Colors.black,
+                        )
+                      ],
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),

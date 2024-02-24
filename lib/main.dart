@@ -1,6 +1,7 @@
 import 'package:FarmXpert/auth/signup.dart';
 import 'package:FarmXpert/home/home.dart';
 import 'package:FarmXpert/misc/config.dart' as misc;
+import 'package:FarmXpert/models/user_model.dart';
 import 'package:FarmXpert/splash/splash.dart';
 import 'package:FarmXpert/auth/login.dart';
 import 'package:FarmXpert/firebase_options.dart';
@@ -14,7 +15,6 @@ import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -66,6 +66,10 @@ void main() async {
     navigatorKey: navigatorKey,
     scaffoldKey: scaffoldKey,
   );
+
+  // TODO: Load it in a preloader screen
+  misc.config.user = await getUser(FirebaseAuth.instance.currentUser!.uid);
+
   runApp(MaterialApp(
     navigatorKey: navigatorKey,
     scaffoldMessengerKey: scaffoldKey,
