@@ -1,6 +1,6 @@
-import 'package:FarmXpert/misc/config.dart';
-import 'package:FarmXpert/models/product_model.dart';
-import 'package:FarmXpert/store/category.dart';
+import 'package:AgroConnect/misc/config.dart';
+import 'package:AgroConnect/models/product_model.dart';
+import 'package:AgroConnect/store/category.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';

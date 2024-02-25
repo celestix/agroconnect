@@ -1,7 +1,7 @@
 // ignore_for_file: no_logic_in_create_state
-import 'package:FarmXpert/models/product_model.dart';
-import 'package:FarmXpert/store/category.dart';
-import 'package:FarmXpert/store/helpers.dart';
+import 'package:AgroConnect/models/product_model.dart';
+import 'package:AgroConnect/store/category.dart';
+import 'package:AgroConnect/store/helpers.dart';
 import 'package:flutter/material.dart';
 
 class SubStoreScreen extends StatefulWidget {

@@ -1,4 +1,4 @@
-import 'package:FarmXpert/misc/config.dart';
+import 'package:AgroConnect/misc/config.dart';
 import 'package:flutter/material.dart';
 
 class CropsPage extends StatefulWidget {

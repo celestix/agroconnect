@@ -1,5 +1,5 @@
-import 'package:FarmXpert/misc/config.dart';
-import 'package:FarmXpert/store/terms.dart';
+import 'package:AgroConnect/misc/config.dart';
+import 'package:AgroConnect/store/terms.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

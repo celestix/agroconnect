@@ -1,10 +1,10 @@
 import 'dart:async';
 
-import 'package:FarmXpert/farmbook/farmbook.dart';
-import 'package:FarmXpert/home/coming_soon.dart';
-import 'package:FarmXpert/misc/config.dart';
-import 'package:FarmXpert/store/main_store.dart';
-import 'package:FarmXpert/weather/weather_screen.dart';
+import 'package:AgroConnect/farmbook/farmbook.dart';
+import 'package:AgroConnect/home/coming_soon.dart';
+import 'package:AgroConnect/misc/config.dart';
+import 'package:AgroConnect/store/main_store.dart';
+import 'package:AgroConnect/weather/weather_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -72,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          "FarmXpert",
+          "AgroConnect",
           style: TextStyle(
             fontFamily: "SF Pro Display",
             fontSize: 25,
@@ -195,11 +195,11 @@ class _HomeScreenState extends State<HomeScreen> {
                         Icons.agriculture,
                         size: 50,
                       ),
-                      applicationName: "FarmXpert",
+                      applicationName: "AgroConnect",
                       applicationVersion: "1.0.0",
                       children: [
                         const Text(
-                          "FarmXpert is a mobile application made for the farmers. It is a one stop solution for all the problems faced by the farmers. It is made with the aim to help the farmers in every possible way.",
+                          "AgroConnect is a mobile application made for the farmers. It is a one stop solution for all the problems faced by the farmers. It is made with the aim to help the farmers in every possible way.",
                           style: TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.w300,

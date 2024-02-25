@@ -1,4 +1,4 @@
-import 'package:FarmXpert/models/product_model.dart';
+import 'package:AgroConnect/models/product_model.dart';
 import 'package:flutter/material.dart';
 
 List<Row> getProductGrid(List<ProductModel> products) {

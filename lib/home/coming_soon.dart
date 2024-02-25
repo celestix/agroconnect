@@ -1,4 +1,4 @@
-import 'package:FarmXpert/misc/config.dart';
+import 'package:AgroConnect/misc/config.dart';
 import 'package:flutter/material.dart';
 
 class PageNotFound extends StatelessWidget {
@@ -10,7 +10,7 @@ class PageNotFound extends StatelessWidget {
       appBar: AppBar(
         centerTitle: true,
         title: const Text(
-          "FarmXpert",
+          "AgroConnect",
           style: TextStyle(
             fontFamily: "SF Pro Display",
             fontSize: 25,

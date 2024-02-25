@@ -1,8 +1,8 @@
-# FarmXpert
+# AgroConnect
 
 ### Supporting farmers through our online marketplace and community.
 
-FarmXpert is a one-place app that provides direct-to-consumer services such as buying and selling crops, cutting out the middleman, and more.It also provides various features such as Farmbook: Recommendations for protecting crops from diseases and pests, News: - Miscellaneous information. A forum for farmers to discuss and share information on government benefits and policies for farmers in a community format.
+AgroConnect is a one-place app that provides direct-to-consumer services such as buying and selling crops, cutting out the middleman, and more.It also provides various features such as Farmbook: Recommendations for protecting crops from diseases and pests, News: - Miscellaneous information. A forum for farmers to discuss and share information on government benefits and policies for farmers in a community format.
 
 
 ## Features
@@ -19,7 +19,7 @@ FarmXpert is a one-place app that provides direct-to-consumer services such as b
 1. Install Flutter and Android SDK .
 2. Clone the repository from GitHub using the following command:
     
-    ```git clone https://github.com/celestix/farmxpert```
+    ```git clone https://github.com/celestix/agroconnect```
 3. Install the required packages using the `flutter pub get`.
 4. Run the app using `flutter run` or using your IDE's tools.
 

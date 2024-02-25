@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:FarmXpert/farmbook/crops.dart';
-import 'package:FarmXpert/farmbook/fertilizers.dart';
-import 'package:FarmXpert/farmbook/pesticides.dart';
-import 'package:FarmXpert/misc/config.dart';
+import 'package:AgroConnect/farmbook/crops.dart';
+import 'package:AgroConnect/farmbook/fertilizers.dart';
+import 'package:AgroConnect/farmbook/pesticides.dart';
+import 'package:AgroConnect/misc/config.dart';
 import 'package:flutter/material.dart';
 
 class FarmbookScreen extends StatefulWidget {

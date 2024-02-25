@@ -1,7 +1,7 @@
-import 'package:FarmXpert/misc/config.dart';
+import 'package:AgroConnect/misc/config.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:FarmXpert/splash/content.dart';
+import 'package:AgroConnect/splash/content.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

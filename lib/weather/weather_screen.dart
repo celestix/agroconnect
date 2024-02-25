@@ -1,6 +1,6 @@
-import 'package:FarmXpert/misc/config.dart';
-import 'package:FarmXpert/weather/weather_model.dart';
-import 'package:FarmXpert/weather/weather_service.dart';
+import 'package:AgroConnect/misc/config.dart';
+import 'package:AgroConnect/weather/weather_model.dart';
+import 'package:AgroConnect/weather/weather_service.dart';
 import 'package:flutter/material.dart';
 
 class WeatherScreen extends StatefulWidget {

@@ -1,4 +1,4 @@
-import 'package:FarmXpert/misc/config.dart';
+import 'package:AgroConnect/misc/config.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pinput/pinput.dart';

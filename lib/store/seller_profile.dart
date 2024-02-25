@@ -1,6 +1,6 @@
-import 'package:FarmXpert/models/product_model.dart';
-import 'package:FarmXpert/store/add_product.dart';
-import 'package:FarmXpert/store/helpers.dart';
+import 'package:AgroConnect/models/product_model.dart';
+import 'package:AgroConnect/store/add_product.dart';
+import 'package:AgroConnect/store/helpers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

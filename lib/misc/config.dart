@@ -1,5 +1,5 @@
-import 'package:FarmXpert/misc/theme.dart';
-import 'package:FarmXpert/models/user_model.dart';
+import 'package:AgroConnect/misc/theme.dart';
+import 'package:AgroConnect/models/user_model.dart';
 import 'package:flutter/material.dart';
 
 class ConfigConstructor {

@@ -1,6 +1,6 @@
-import 'package:FarmXpert/helpers/name_helper.dart';
-import 'package:FarmXpert/misc/config.dart';
-import 'package:FarmXpert/models/user_model.dart';
+import 'package:AgroConnect/helpers/name_helper.dart';
+import 'package:AgroConnect/misc/config.dart';
+import 'package:AgroConnect/models/user_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';

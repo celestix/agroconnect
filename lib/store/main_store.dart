@@ -1,10 +1,10 @@
-import 'package:FarmXpert/models/product_model.dart';
-import 'package:FarmXpert/store/category.dart';
-import 'package:FarmXpert/store/helpers.dart';
-import 'package:FarmXpert/store/seller_profile.dart';
-import 'package:FarmXpert/store/sub_store.dart';
-import 'package:FarmXpert/store/seller_signup.dart';
-import 'package:FarmXpert/misc/config.dart';
+import 'package:AgroConnect/models/product_model.dart';
+import 'package:AgroConnect/store/category.dart';
+import 'package:AgroConnect/store/helpers.dart';
+import 'package:AgroConnect/store/seller_profile.dart';
+import 'package:AgroConnect/store/sub_store.dart';
+import 'package:AgroConnect/store/seller_signup.dart';
+import 'package:AgroConnect/misc/config.dart';
 import 'package:flutter/material.dart';
 
 class StoreScreen extends StatefulWidget {
