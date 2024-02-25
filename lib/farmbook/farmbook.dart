@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:FarmXpert/farmbook/crops.dart';
 import 'package:FarmXpert/farmbook/fertilizers.dart';
 import 'package:FarmXpert/farmbook/pesticides.dart';
+import 'package:FarmXpert/misc/config.dart';
 import 'package:flutter/material.dart';
 
 class FarmbookScreen extends StatefulWidget {
@@ -28,10 +29,19 @@ class _FarmbookScreenState extends State<FarmbookScreen> {
   ];
 
   List<String> newTexts = [
-    'New Text 1',
-    'New Text 2',
-    'New Text 3',
-    'New Text 4',
+    'Agriculture is the Largest Employer in the World',
+    'Nearly Everything We Eat and Wear is A Product of Agriculture',
+    'Farmers Must Increase Their Food Production by 70% to Cater to the Growing Population by 2025',
+    'One Acre of Farming Land is Equivalent to the Size of an American Football Field',
+    '43% of the Global Agriculture Consists of Women',
+    'Organic Farming Produces Ten Times the Profit of Conventional Farming',
+    'The Majority of the Farms Worldwide are Family-Owned',
+    'Pesticide Residues are Affecting Food Safety',
+    'There is a Global Shortage of People Working in the Agriculture Sector',
+    'Organic Food Production Does Not Involve the Use of Synthetic Fertilisers or Pesticides',
+    'The Natural Pesticides Used in Organic Farming May Not Always Be The Best Thing for the Crops',
+    'Industrial Farming Practices Carry the Risk of Spreading Viruses from Animals to Humans',
+    'Around 9.2% of the Total Population of the World is Food Insecure'
   ];
 
   List<Widget> newpages = [
@@ -67,32 +77,24 @@ class _FarmbookScreenState extends State<FarmbookScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Farmbook',
-          style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-            fontSize: 30,
-          ),
-        ),
         centerTitle: true,
-        backgroundColor: Colors.green,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.notifications),
-            onPressed: () {},
-            color: Colors.white,
+        title: const Text(
+          "Farmbook",
+          style: TextStyle(
+            fontFamily: "SF Pro Display",
+            fontSize: 25,
+            fontWeight: FontWeight.w600,
           ),
-        ],
+        ),
+        backgroundColor: config.chosenTheme.primaryColor,
+        foregroundColor: Colors.white,
+        elevation: 10,
       ),
       body: Column(
         children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.07,
+          ),
           Expanded(
             child: Align(
               alignment: Alignment.bottomCenter,
@@ -106,7 +108,7 @@ class _FarmbookScreenState extends State<FarmbookScreen> {
                 ),
                 itemBuilder: (context, index) {
                   return Card(
-                    elevation: 10,
+                    elevation: 0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
@@ -161,11 +163,16 @@ class _FarmbookScreenState extends State<FarmbookScreen> {
                   itemCount: newTexts.length,
                   itemBuilder: (context, index) {
                     return Center(
-                      child: Text(
-                        newTexts[index],
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 18,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          newTexts[index],
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     );

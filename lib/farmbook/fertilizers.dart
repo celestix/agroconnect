@@ -87,7 +87,7 @@ class _FarmBookPageState extends State<FarmBookPage> {
           Container(
             padding: const EdgeInsets.all(8.0),
             child: Image.asset(
-              'images/fert.jpg',
+              'assets/images/farmbook/fert.jpg',
               width: MediaQuery.of(context).size.width * 0.8,
               fit: BoxFit.cover,
             ),
