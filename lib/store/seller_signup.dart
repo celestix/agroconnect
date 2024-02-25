@@ -40,7 +40,7 @@ class SellerSignupScreen extends StatelessWidget {
             SizedBox(
               width: size.width / 1.3,
               child: const Text(
-                "Sell your products on FarmXPert by clicking the button given below:",
+                "Sell your products on AgroConnect by clicking the button given below:",
               ),
             ),
             const SizedBox(

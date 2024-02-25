@@ -45,7 +45,7 @@ class TermsScreen extends StatelessWidget {
           children: [
             const Center(
               child: Text(
-                "FarmXPert",
+                "AgroConnect",
                 style: TextStyle(
                   fontSize: 40,
                   fontWeight: FontWeight.bold,

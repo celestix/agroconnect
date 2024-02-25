@@ -12,28 +12,15 @@ class WeatherScreen extends StatefulWidget {
 
 class _WeatherScreenState extends State<WeatherScreen> {
   final _weatherService = WeatherService('f79ec55ee3843f54705667db3795ab78');
-  WeatherModel? _weather;
-  String _cityName = '';
+  WeatherModel? weather;
+  String _cityName = "";
 
-  _fetchWeather(String cityName) async {
-    try {
-      final weather = await _weatherService.getWeather(cityName);
-      setState(() {
-        _weather = weather;
-      });
-    } catch (e) {
-      print(e);
-    }
+  Future<WeatherModel> _fetchWeather(String cityName) async {
+    return await _weatherService.getWeather(cityName);
   }
 
-  @override
-  void initState() {
-    super.initState();
-    _fetchWeather('');
-  }
-
-  String _getWeatherIcon() {
-    switch (_weather?.mainCondition) {
+  String _getWeatherIcon(WeatherModel? weather) {
+    switch (weather?.mainCondition) {
       case 'Clear':
         return '🌞';
       case 'Clouds':
@@ -57,72 +44,94 @@ class _WeatherScreenState extends State<WeatherScreen> {
     }
   }
 
+// _fetchWeather(_cityName);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text(
-          "Weather",
-          style: TextStyle(
-            fontFamily: "SF Pro Display",
-            fontSize: 25,
-            fontWeight: FontWeight.w600,
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text(
+            "Weather",
+            style: TextStyle(
+              fontFamily: "SF Pro Display",
+              fontSize: 25,
+              fontWeight: FontWeight.w600,
+            ),
           ),
+          backgroundColor: config.chosenTheme.primaryColor,
+          foregroundColor: Colors.white,
+          elevation: 10,
         ),
-        backgroundColor: config.chosenTheme.primaryColor,
-        foregroundColor: Colors.white,
-        elevation: 10,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: TextField(
-                onChanged: (value) {
-                  setState(() {
-                    _cityName = value;
-                  });
-                },
-                textAlign: TextAlign.center,
-                decoration: const InputDecoration(
-                  hintText: 'Enter city name',
-                  hintStyle: TextStyle(fontSize: 16.0),
+        body: FutureBuilder<WeatherModel?>(
+          future: _fetchWeather(_cityName == "" ? "New York" : _cityName),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.hasError) {
+                return Center(
+                  child: Text("Error: ${snapshot.error!}"),
+                );
+              }
+              weather = snapshot.data;
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: TextField(
+                        onChanged: (value) {
+                          _cityName = value;
+                        },
+                        textAlign: TextAlign.center,
+                        decoration: const InputDecoration(
+                          hintText: 'Enter city name',
+                          hintStyle: TextStyle(fontSize: 16.0),
+                        ),
+                      ),
+                    ),
+                    ElevatedButton(
+                      onPressed: () async {
+                        weather = await _fetchWeather(_cityName);
+                        setState(() {});
+                      },
+                      child: const Text('Check Weather'),
+                    ),
+                    const SizedBox(height: 20),
+                    Text(
+                      weather?.cityName ?? "Loading city...",
+                      style: const TextStyle(fontSize: 24.0),
+                    ),
+                    Text(
+                      '${weather?.temperature.round().toString()}°C',
+                      style: const TextStyle(fontSize: 24.0),
+                    ),
+                    Text(
+                      'Wind Speed: ${weather?.windSpeed ?? "Unknown"} m/s',
+                      style: const TextStyle(fontSize: 16.0),
+                    ),
+                    Text(
+                      'Humidity: ${weather?.humidity ?? "Unknown"}%',
+                      style: const TextStyle(fontSize: 16.0),
+                    ),
+                    Text(
+                      _getWeatherIcon(weather),
+                      style: const TextStyle(fontSize: 50.0),
+                    ),
+                  ],
+                ),
+              );
+            }
+            return const Expanded(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(),
+                  ],
                 ),
               ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                _fetchWeather(_cityName);
-              },
-              child: const Text('Check Weather'),
-            ),
-            const SizedBox(height: 20),
-            Text(
-              _weather?.cityName ?? "Loading city...",
-              style: const TextStyle(fontSize: 24.0),
-            ),
-            Text(
-              '${_weather?.temperature.round().toString()}°C',
-              style: const TextStyle(fontSize: 24.0),
-            ),
-            Text(
-              'Wind Speed: ${_weather?.windSpeed ?? "Unknown"} m/s',
-              style: const TextStyle(fontSize: 16.0),
-            ),
-            Text(
-              'Humidity: ${_weather?.humidity ?? "Unknown"}%',
-              style: const TextStyle(fontSize: 16.0),
-            ),
-            Text(
-              _getWeatherIcon(),
-              style: const TextStyle(fontSize: 50.0),
-            ),
-          ],
-        ),
-      ),
-    );
+            );
+          },
+        ));
   }
 }
