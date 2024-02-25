@@ -25,6 +25,7 @@ class ProductModel {
     id = map['id'];
     name = map['name'];
     price = map['price'];
+    category = map['category'];
     seller = map['seller'];
     image = map['image'];
     description = map['description'];
@@ -35,6 +36,7 @@ class ProductModel {
       'id': id,
       'name': name,
       'price': price,
+      'category': category,
       'description': description,
       'seller': seller,
       'image': image,
@@ -43,30 +45,30 @@ class ProductModel {
 
   Future<void> add({FirebaseFirestore? dbInstance}) async {
     await (dbInstance ?? FirebaseFirestore.instance)
-        .collection("$_productCollection-$category")
+        .collection(_productCollection)
         .doc(id)
         .set(toMap());
   }
 
   Future<void> update({FirebaseFirestore? dbInstance}) async {
     await (dbInstance ?? FirebaseFirestore.instance)
-        .collection("$_productCollection-$category")
+        .collection(_productCollection)
         .doc(id)
         .update(toMap());
   }
 
   Future<void> delete({FirebaseFirestore? dbInstance}) async {
     await (dbInstance ?? FirebaseFirestore.instance)
-        .collection("$_productCollection-$category")
+        .collection(_productCollection)
         .doc(id)
         .delete();
   }
 }
 
-Future<ProductModel> getProduct(String id, int category,
+Future<ProductModel> getProduct(String id,
     {FirebaseFirestore? dbInstance}) async {
   final product = await (dbInstance ?? FirebaseFirestore.instance)
-      .collection("$_productCollection-$category")
+      .collection(_productCollection)
       .doc(id)
       .get();
   return ProductModel.fromMap(product.data()!);
@@ -75,7 +77,8 @@ Future<ProductModel> getProduct(String id, int category,
 Future<List<ProductModel>> getProducts(int category,
     {FirebaseFirestore? dbInstance, int? limit}) async {
   final products = await (dbInstance ?? FirebaseFirestore.instance)
-      .collection("$_productCollection-$category")
+      .collection(_productCollection)
+      .where('category', isEqualTo: category)
       .limit(limit ?? 100)
       .get();
   return products.docs
@@ -83,10 +86,10 @@ Future<List<ProductModel>> getProducts(int category,
       .toList();
 }
 
-Future<List<ProductModel>> getProductsBySeller(int category, String seller,
+Future<List<ProductModel>> getProductsBySeller(String seller,
     {FirebaseFirestore? dbInstance, int? limit}) async {
   final products = await (dbInstance ?? FirebaseFirestore.instance)
-      .collection("$_productCollection-$category")
+      .collection(_productCollection)
       .where('seller', isEqualTo: seller)
       .limit(limit ?? 100)
       .get();

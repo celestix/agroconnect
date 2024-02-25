@@ -4,7 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SellerSignupScreen extends StatelessWidget {
-  const SellerSignupScreen({super.key});
+  const SellerSignupScreen({
+    super.key,
+    required this.mainSetState,
+  });
+
+  final void Function(void Function()) mainSetState;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +60,9 @@ class SellerSignupScreen extends StatelessWidget {
                 ),
                 onPressed: () {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const TermsScreen()));
+                      builder: (context) => TermsScreen(
+                            mainSetState: mainSetState,
+                          )));
                 },
                 child: Text(
                   "Become E-Seller",

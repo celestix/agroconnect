@@ -8,13 +8,24 @@ import 'package:image_picker/image_picker.dart';
 import 'package:uuid/v4.dart';
 
 class ProductUploadScreen extends StatefulWidget {
-  const ProductUploadScreen({super.key});
+  const ProductUploadScreen({
+    super.key,
+    required this.parentSetState,
+  });
+
+  final void Function(void Function()) parentSetState;
 
   @override
-  State<StatefulWidget> createState() => _ProductUploadScreenState();
+  State<StatefulWidget> createState() =>
+      // ignore: no_logic_in_create_state
+      _ProductUploadScreenState(parentSetState);
 }
 
 class _ProductUploadScreenState extends State<ProductUploadScreen> {
+  _ProductUploadScreenState(this.parentSetState);
+
+  final void Function(void Function()) parentSetState;
+
   final TextEditingController _productNameController = TextEditingController();
   final TextEditingController _productDescriptionController =
       TextEditingController();
@@ -113,6 +124,7 @@ class _ProductUploadScreenState extends State<ProductUploadScreen> {
     );
     await productData.add();
     Navigator.pop(config.navigatorKey.currentContext!);
+    parentSetState(() => {});
     config.scaffoldKey.currentState!.showMaterialBanner(
       MaterialBanner(
         content: const Text(

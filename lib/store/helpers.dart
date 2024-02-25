@@ -48,7 +48,7 @@ Card getProductCard(String productId, String productName, double productPrice,
     color: Colors.white,
     child: InkWell(
       onTap: () => {
-        // do something using product id
+        // TODO: do something using product id
       },
       child: Column(
         children: [

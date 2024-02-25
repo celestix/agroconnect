@@ -153,8 +153,12 @@ class _StoreScreenState extends State<StoreScreen> {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => (config.user!.isSeller == null ||
                           config.user!.isSeller == false)
-                      ? const SellerSignupScreen()
-                      : const SellerProfileScreen(),
+                      ? SellerSignupScreen(
+                          mainSetState: setState,
+                        )
+                      : SellerProfileScreen(
+                          mainSetState: setState,
+                        ),
                 ));
               },
               icon: const Icon(Icons.account_box),
@@ -215,8 +219,8 @@ class _StoreScreenState extends State<StoreScreen> {
                                     getChecklistElement(
                                         "Fertilizers", setState),
                                     getChecklistElement("Pesticides", setState),
-                                    getChecklistElement("Crops", setState),
                                     getChecklistElement("Seeds", setState),
+                                    getChecklistElement("Crops", setState),
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       children: [

@@ -3,6 +3,13 @@ import 'package:FarmXpert/store/seller_profile.dart';
 import 'package:flutter/material.dart';
 
 class TermsScreen extends StatelessWidget {
+  const TermsScreen({
+    super.key,
+    required this.mainSetState,
+  });
+
+  final void Function(void Function()) mainSetState;
+
   Column getSection(String heading, String description) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,8 +33,6 @@ class TermsScreen extends StatelessWidget {
       ],
     );
   }
-
-  const TermsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -134,7 +139,9 @@ class TermsScreen extends StatelessWidget {
                   await config.user!.update();
                   await config.navigatorKey.currentState!
                       .pushReplacement(MaterialPageRoute(builder: (context) {
-                    return const SellerProfileScreen();
+                    return SellerProfileScreen(
+                      mainSetState: mainSetState,
+                    );
                   }));
                 },
                 child: Text(
