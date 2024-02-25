@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 class Theme {
   late final Color primaryColor;
   late final Color primaryColorLight;
+  late final Color primaryColorLighter;
   late final Color secondaryColor;
   late final Color primaryTextColor;
   late final Color secondaryTextColor;
@@ -19,6 +20,9 @@ class LightTheme implements Theme {
 
   @override
   Color primaryColorLight = const Color.fromRGBO(33, 189, 39, 1);
+
+  @override
+  Color primaryColorLighter = Color.fromARGB(255, 50, 228, 56);
 
   @override
   Color primaryTextColor = Colors.black;

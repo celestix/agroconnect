@@ -226,7 +226,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 20),
+            padding: const EdgeInsets.only(top: 30),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(15),
               child: GestureDetector(
@@ -238,19 +238,40 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
                 child: Container(
-                  height: 100,
+                  height: MediaQuery.of(context).size.height * 0.25,
                   width: MediaQuery.of(context).size.width * 0.9,
-                  color: const Color.fromARGB(255, 196, 225, 240),
+                  color: Colors.lightGreen[50],
                   child: PageView.builder(
                     controller: _pageController,
                     itemCount: textSliderTexts.length,
                     itemBuilder: (context, index) {
                       return Center(
-                        child: Text(
-                          textSliderTexts[index],
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 18,
+                        child: Padding(
+                          padding: const EdgeInsets.all(10),
+                          child: Column(
+                            children: [
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.005,
+                              ),
+                              SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.06,
+                                width: MediaQuery.of(context).size.width * 0.8,
+                                child: Text(
+                                  textSliderTexts[index],
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(height: 10),
+                              const Text(
+                                  "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim."),
+                            ],
                           ),
                         ),
                       );
@@ -260,7 +281,64 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          const SizedBox(height: 20),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.035,
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: SizedBox(
+              height: MediaQuery.of(context).size.height * 0.48,
+              child: GridView.builder(
+                itemCount: imageTexts.length,
+                padding: const EdgeInsets.all(5),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 16,
+                  mainAxisSpacing: 16,
+                ),
+                itemBuilder: (context, index) {
+                  return Card(
+                    elevation: 0,
+                    color: Colors.lightGreen[50],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
+                    child: InkWell(
+                      onTap: () {
+                        // Navigate to the corresponding page when an image is tapped
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                homeRoutes[imageTexts[index]] ??
+                                const PageNotFound(),
+                          ),
+                        );
+                      },
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            "assets/images/home/${imageTexts[index]}.png",
+                            height: 80,
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            imageTexts[index],
+                            style: const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: "SF Pro Display",
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
           ElevatedButton(
             onPressed: () {
               Navigator.push(
@@ -269,65 +347,22 @@ class _HomeScreenState extends State<HomeScreen> {
               );
             },
             style: ElevatedButton.styleFrom(
-              foregroundColor: Colors.black,
-              backgroundColor: const Color.fromARGB(255, 196, 225, 240),
+              foregroundColor: config.chosenTheme.primaryTextColor,
+              elevation: 0,
+              backgroundColor: config.chosenTheme.primaryColor,
               minimumSize: Size(MediaQuery.of(context).size.width * 0.9, 50),
             ),
             child: const Text(
-              "Click here to check today's weather",
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
-          Expanded(
-            child: GridView.builder(
-              itemCount: imageTexts.length,
-              padding: const EdgeInsets.all(16),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 16,
+              "Check Today's Weather",
+              style: TextStyle(
+                fontSize: 16,
+                fontFamily: "SF Pro Display",
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
               ),
-              itemBuilder: (context, index) {
-                return Card(
-                  elevation: 1,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: InkWell(
-                    onTap: () {
-                      // Navigate to the corresponding page when an image is tapped
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) =>
-                              homeRoutes[imageTexts[index]] ??
-                              const PageNotFound(),
-                        ),
-                      );
-                    },
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          "assets/images/home/${imageTexts[index]}.png",
-                          height: 80,
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          imageTexts[index],
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "SF Pro Display",
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                );
-              },
             ),
           ),
+          const Spacer(),
         ],
       ),
     );
