@@ -75,6 +75,7 @@ flutter:
       - assets/images/splash/
       - assets/images/home/
       - assets/images/store/
+      - assets/images/farmbook/
       # - assets/images/login.svg
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:FarmXpert/farmbook/farmbook.dart';
 import 'package:FarmXpert/home/coming_soon.dart';
 import 'package:FarmXpert/misc/config.dart';
 import 'package:FarmXpert/store/main_store.dart';
@@ -34,6 +35,7 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   Map<String, Widget?> homeRoutes = {
+    "FarmBook": const FarmbookScreen(),
     "Marketplace": const StoreScreen(),
   };
 
