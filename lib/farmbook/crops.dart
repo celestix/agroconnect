@@ -1,10 +1,11 @@
+import 'package:FarmXpert/misc/config.dart';
 import 'package:flutter/material.dart';
 
 class CropsPage extends StatefulWidget {
   const CropsPage({super.key});
 
   @override
-  _CropsPageState createState() => _CropsPageState();
+  State<StatefulWidget> createState() => _CropsPageState();
 }
 
 class _CropsPageState extends State<CropsPage> {
@@ -14,15 +15,18 @@ class _CropsPageState extends State<CropsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text(
-          'Crops',
+          "Crops",
           style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
+            fontFamily: "SF Pro Display",
+            fontSize: 25,
+            fontWeight: FontWeight.w600,
           ),
         ),
-        centerTitle: true,
-        backgroundColor: const Color.fromRGBO(22, 215, 79, 1),
+        backgroundColor: config.chosenTheme.primaryColor,
+        foregroundColor: Colors.white,
+        elevation: 10,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

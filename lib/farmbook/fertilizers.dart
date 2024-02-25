@@ -1,3 +1,4 @@
+import 'package:FarmXpert/misc/config.dart';
 import 'package:flutter/material.dart';
 
 class FarmBookPage extends StatefulWidget {
@@ -71,15 +72,18 @@ class _FarmBookPageState extends State<FarmBookPage> {
 
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text(
-          'Fertilizers',
+          "Fertilizers",
           style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
+            fontFamily: "SF Pro Display",
+            fontSize: 25,
+            fontWeight: FontWeight.w600,
           ),
         ),
-        centerTitle: true,
-        backgroundColor: const Color.fromRGBO(22, 215, 79, 1),
+        backgroundColor: config.chosenTheme.primaryColor,
+        foregroundColor: Colors.white,
+        elevation: 10,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

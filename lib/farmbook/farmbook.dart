@@ -47,7 +47,7 @@ class _FarmbookScreenState extends State<FarmbookScreen> {
   List<Widget> newpages = [
     const CropsPage(),
     const FarmBookPage(),
-    const MarketplacePage(),
+    const PesticideScreen(),
   ];
 
   int _currentIndex = 0;

@@ -1,28 +1,32 @@
+import 'package:FarmXpert/misc/config.dart';
 import 'package:flutter/material.dart';
 
-class MarketplacePage extends StatefulWidget {
-  const MarketplacePage({super.key});
+class PesticideScreen extends StatefulWidget {
+  const PesticideScreen({super.key});
 
   @override
-  _MarketplacePageState createState() => _MarketplacePageState();
+  State<StatefulWidget> createState() => _MarketplacePageState();
 }
 
-class _MarketplacePageState extends State<MarketplacePage> {
+class _MarketplacePageState extends State<PesticideScreen> {
   String _searchQuery = '';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text(
-          'Pests and Diseases',
+          "Pests and Diseases",
           style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
+            fontFamily: "SF Pro Display",
+            fontSize: 25,
+            fontWeight: FontWeight.w600,
           ),
         ),
-        centerTitle: true,
-        backgroundColor: const Color.fromRGBO(22, 215, 79, 1),
+        backgroundColor: config.chosenTheme.primaryColor,
+        foregroundColor: Colors.white,
+        elevation: 10,
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
