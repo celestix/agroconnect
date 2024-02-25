@@ -1,5 +1,8 @@
 import 'dart:async';
 
+import 'package:FarmXpert/farmbook/crops.dart';
+import 'package:FarmXpert/farmbook/fertilizers.dart';
+import 'package:FarmXpert/farmbook/pesticides.dart';
 import 'package:flutter/material.dart';
 
 class FarmbookScreen extends StatefulWidget {
@@ -32,10 +35,9 @@ class _FarmbookScreenState extends State<FarmbookScreen> {
   ];
 
   List<Widget> newpages = [
-    // const CropsPage(),
-    // const FarmBookPage(),
-    // const MarketplacePage(),
-    // const CommunityPage(),
+    const CropsPage(),
+    const FarmBookPage(),
+    const MarketplacePage(),
   ];
 
   int _currentIndex = 0;

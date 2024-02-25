@@ -4,6 +4,7 @@ import 'package:FarmXpert/farmbook/farmbook.dart';
 import 'package:FarmXpert/home/coming_soon.dart';
 import 'package:FarmXpert/misc/config.dart';
 import 'package:FarmXpert/store/main_store.dart';
+import 'package:FarmXpert/weather/weather_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -345,7 +346,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const PageNotFound()),
+                MaterialPageRoute(builder: (context) => const WeatherScreen()),
               );
             },
             style: ElevatedButton.styleFrom(
