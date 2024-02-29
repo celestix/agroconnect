@@ -6,12 +6,12 @@ AgroConnect is a one-place app that provides direct-to-consumer services such as
 
 
 ## Features
-- **Marketplace**: is a place where you can buy and sell crops, fertilizers, and other useful things at affordable prices.
+- **Marketplace**: This platform facilitates direct transactions between farmers and consumers, allowing the purchase and sale of crops, fertilizers, and other agricultural supplies at competitive prices.
 - **FarmBook**: Features with insights and details about specific crops to support farmers by region and climate.
-- **News Section**: Dedicated platform for information on government social policies, subsidies and programs for farmers.
+- **News Section**: This dedicated platform serves as a central hub for crucial information on government social policies, subsidies, and programs specifically designed to support farmers.
 - **Community**: A dedicated space for mutual discussion, information sharing, and learning for farmers worldwide.
-- **Weather Report**: A section that allows farmers to monitor the weather in their area and grow crops more efficiently.
-- **Organic Farming** : Features built into Farmbook to expand your knowledge and support farmers using organic farming methods.
+- **Weather Report**: This integrated feature empowers farmers to monitor weather conditions in their local area, allowing them to make informed decisions and optimize their agricultural strategies.
+- **Organic Farming**: Features built into Farmbook to expand your knowledge and support farmers using organic farming methods.
 
 ## Getting Started
 
@@ -28,11 +28,11 @@ AgroConnect is a one-place app that provides direct-to-consumer services such as
 - [x] Add Phone OTP based authentification
 - [x] Integrate Firestore for storage
 - [x] Implement Firebase Crashlytics
-- [ ] Integrate Google Analytics
-- [ ] Implement Firebase Push Messages Mechanism
-  - [ ] Android
-  - [ ] iOS
-- [ ] Integrate Gemini AI  
+- [x] Integrate Google Analytics
+- [x] Implement Firebase Push Messages Mechanism
+  - [x] Android
+  - [x] iOS
+- [x] Integrate Gemini AI  
 - [ ] Add Dark Theme
 
 ## Contributing
