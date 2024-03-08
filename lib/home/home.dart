@@ -27,12 +27,24 @@ class _HomeScreenState extends State<HomeScreen> {
     'Pradhan Mantri Kisan MaanDhan Yojana',
     'Pradhan Mantri Fasal Bima Yojana (PMFBY)',
     'Rastriya Krishi Vikas Yojana',
+    'PM Kisan Sampada Yojana',
     'Modified Interest Subvention Scheme (MISS)',
     'Market Intervention Scheme and Price support Scheme (MIS-PSS)',
     'Pashu Kisan Credit Card Scheme ',
     'Agri Infrastructure Fund',
     'Soil Health Card Scheme',
-    'PM Kisan Sampada Yojana',
+  ];
+
+  List<String> textSliderDescriptions = [
+    "The Pradhan Mantri Kisan Maandhan Yojana provides financial security to small and marginal farmers aged 18 to 40. They contribute monthly (₹55 to ₹200) until 60 and receive a guaranteed ₹3000 monthly pension. In case of the farmer's death, the spouse gets 50% as a family pension. The scheme ensures retirement support for farmers.",
+    "The Pradhan Mantri Fasal Bima Yojana (PMFBY) started in India in 2016, with the National Insurance Company joining from 2016. Covering 8 states and 2 Union Territories over 5 seasons, 70,27,637 farmers participated, contributing Rs. 453 crores. State subsidies amounted to Rs. 1909 crores, resulting in a total gross premium of Rs. 2362 crores.",
+    "Rashtriya Krishi Vikas Yojana (RKVY) - Remunerative Approaches for Agriculture and Allied sector Rejuvenation (RAFTAAR) aims at making farming a remunerative economic activity by strengthening the farmers' efforts, risk mitigation and promoting agri-business entrepreneurship.",
+    "PM Kisan Sampada Yojana benefits farmers by providing financial assistance for infrastructure development, processing units, and value addition in agriculture. It enhances farm income, reduces post-harvest losses, and ensures better market access. The scheme fosters employment opportunities and promotes sustainable agriculture.",
+    "The Union Cabinet, led by Prime Minister Narendra Modi, has approved restoring the Interest Subvention on short-term agriculture loans to 1.5% for all financial institutions. This support, spanning 2022-23 to 2024-25, involves an additional budget of Rs 34,856 crore. The move aims to sustain credit flow in agriculture, and promote rural employment.",
+    "The Market Intervention Scheme (MIS) acts as a price support mechanism for perishable and horticultural commodities, triggered by a 10% production increase or a 10% price decrease. Implemented on State Government requests, it shields growers from distress sales during bumper crops, providing remunerative prices.",
+    "The Pashu Kisan Credit Card scheme, launched by the Government of India, aims to benefit animal husbandry farmers by providing working capital for their livestock-related activities. Features include loans up to Rs. 3 lakh with lower interest rates, repayment within five years, and six equal instalments for cattle owners.",
+    "The announcement of the 1 lakh crore Agri Infrastructure Fund by the Finance Minister aims to develop farm-gate infrastructure, benefiting farmers and promoting post-harvest management. This scheme targets financing agriculture infrastructure projects at farm-gate and aggregation points, including cooperatives, farmer organizations, and startups.",
+    "The Soil Health Card Scheme offers farmers personalized soil health information and recommendations for better crop management. Benefits include optimized fertilizer use, increased crop yield, reduced input costs, and improved soil fertility and sustainability. It enables informed decision-making, enhances productivity.",
   ];
 
   Map<String, Widget?> homeRoutes = {
@@ -241,7 +253,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   );
                 },
                 child: Container(
-                  height: MediaQuery.of(context).size.height * 0.25,
+                  height: MediaQuery.of(context).size.height * 0.27,
                   width: MediaQuery.of(context).size.width * 0.9,
                   color: Colors.lightGreen[50],
                   child: PageView.builder(
@@ -272,8 +284,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ),
                               ),
                               const SizedBox(height: 10),
-                              const Text(
-                                  "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim."),
+                              Text(textSliderDescriptions[index]),
                             ],
                           ),
                         ),

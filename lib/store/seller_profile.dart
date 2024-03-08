@@ -13,16 +13,10 @@ class SellerProfileScreen extends StatefulWidget {
   final void Function(void Function()) mainSetState;
 
   @override
-  State<StatefulWidget> createState() =>
-      // ignore: no_logic_in_create_state
-      _SellerProfileScreenState(mainSetState);
+  State<StatefulWidget> createState() => _SellerProfileScreenState();
 }
 
 class _SellerProfileScreenState extends State<SellerProfileScreen> {
-  _SellerProfileScreenState(this.mainSetState);
-
-  final void Function(void Function()) mainSetState;
-
   @override
   Widget build(BuildContext context) {
     // Future<List<ProductModel>> getMyProducts() async {
@@ -77,7 +71,7 @@ class _SellerProfileScreenState extends State<SellerProfileScreen> {
                               builder: (context) => ProductUploadScreen(
                                 parentSetState: (x) => {
                                   setState(() {
-                                    mainSetState(() {});
+                                    widget.mainSetState(() {});
                                   })
                                 },
                               ),

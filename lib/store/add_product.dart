@@ -16,15 +16,11 @@ class ProductUploadScreen extends StatefulWidget {
   final void Function(void Function()) parentSetState;
 
   @override
-  State<StatefulWidget> createState() =>
-      // ignore: no_logic_in_create_state
-      _ProductUploadScreenState(parentSetState);
+  State<StatefulWidget> createState() => _ProductUploadScreenState();
 }
 
 class _ProductUploadScreenState extends State<ProductUploadScreen> {
-  _ProductUploadScreenState(this.parentSetState);
-
-  final void Function(void Function()) parentSetState;
+  _ProductUploadScreenState();
 
   final TextEditingController _productNameController = TextEditingController();
   final TextEditingController _productDescriptionController =
@@ -124,7 +120,7 @@ class _ProductUploadScreenState extends State<ProductUploadScreen> {
     );
     await productData.add();
     Navigator.pop(config.navigatorKey.currentContext!);
-    parentSetState(() => {});
+    widget.parentSetState(() => {});
     config.scaffoldKey.currentState!.showMaterialBanner(
       MaterialBanner(
         content: const Text(

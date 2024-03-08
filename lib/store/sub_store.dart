@@ -10,16 +10,13 @@ class SubStoreScreen extends StatefulWidget {
   final String sectionName;
 
   @override
-  State<StatefulWidget> createState() => _SubStoreScreenState(sectionName);
+  State<StatefulWidget> createState() => _SubStoreScreenState();
 }
 
 class _SubStoreScreenState extends State<SubStoreScreen> {
-  _SubStoreScreenState(this.sectionName);
-
-  final String sectionName;
-
   @override
   Widget build(BuildContext context) {
+    final String sectionName = widget.sectionName;
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 252, 252, 252),
       appBar: AppBar(

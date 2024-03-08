@@ -68,7 +68,9 @@ void main() async {
   );
 
   // TODO: Load it in a preloader screen
-  misc.config.user = await getUser(FirebaseAuth.instance.currentUser!.uid);
+  if (FirebaseAuth.instance.currentUser != null) {
+    misc.config.user = await getUser(FirebaseAuth.instance.currentUser!.uid);
+  }
 
   runApp(MaterialApp(
     navigatorKey: navigatorKey,
